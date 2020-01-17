@@ -112,6 +112,10 @@ export default {
     z-index: 5;
     cursor: pointer;
     margin-left: -1rem;
+    @media screen and (max-width: $iPhoneXSMax-landscape) {
+      display: flex;
+      margin-left: auto;
+    }
   }
 }
 /deep/.jun-modal-delete {

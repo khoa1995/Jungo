@@ -26,11 +26,8 @@ export default {
     background-color: $color-black;
     .jun-main {
       padding: 3rem 6rem;
-      @media screen and (max-width: $width-fHD-zoom-125) {
-        padding-left: 23rem;
-      }
       @media screen and (max-width: $iPhoneXSMax-landscape) {
-        padding-left: 0;
+        padding: 0;
       }
     }
 }

@@ -55,7 +55,7 @@ export default {
   methods: {
     addCategory () {
       this.modalAddToggle = true
-      this.$refs.inputText.focus()
+      this.$refs.inputText.$el.focus()
     },
     closeModal () {
       this.modalAddToggle = false

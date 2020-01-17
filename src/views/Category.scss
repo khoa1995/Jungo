@@ -29,6 +29,10 @@
         }
       }
     }
+    @media screen and (max-width: $iPhoneXSMax-landscape) {
+      display: block;
+      margin: 0 1rem;
+    }
   }
 }
 .add-category-modal {
