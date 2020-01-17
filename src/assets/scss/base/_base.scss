@@ -1,0 +1,33 @@
+@import './variables';
+@import './mixins';
+@import './typography';
+@import './transitions';
+
+* {
+  outline: 0 none;
+}
+
+body {
+  font-size: 1rem;
+  line-height: $line-height;
+  position: relative;
+  min-height: 100vh;
+  color: $color-black;
+  background-color: $color-app-bg;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  transition: all 0.3s ease;
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+}
+
+img {
+  max-width: 100%;
+}

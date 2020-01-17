@@ -1,0 +1,53 @@
+/*
+*  Main.
+*
+*  [Table of contents]
+*
+*  [&. Content / #key]
+*  [Let press Ctrl + f and type of paste the key, then press Enter to search the content]
+*
+*  Summary:
+*
+*  01. Prefix
+*  02. Layout
+*
+*/
+
+@import './base/base';
+@import './components/components';
+
+/*==================================
+=            01. Prefix            =
+==================================*/
+
+.clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.pull-left {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.pull-right {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.pull-top {
+  margin-top: 0;
+  margin-bottom: auto;
+}
+
+.pull-bottom {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+/*=====  End of 01. Prefix  ======*/
+

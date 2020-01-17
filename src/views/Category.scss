@@ -1,0 +1,76 @@
+@import './../assets/scss/base/variables';
+.jun-category {
+  &-header {
+    display: flex;
+    &__title {
+      color: $color-white;
+      font-weight: 500;
+      font-size: 1.25rem;
+    }
+    &__actions {
+      margin-left: auto;
+      display: flex;
+    }
+    &__add {
+      margin: 0 1rem;
+    }
+    &__search {
+      width: 40rem;
+      input {
+        width: 100%;
+        height: 100%;
+        padding: 0 1rem;
+        background-color: adjust-color($color-black, $lightness: 10%);
+        border:none;
+        color: $color-white;
+        &::placeholder {
+          font-size: 1rem;
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+.add-category-modal {
+  .required {
+    color: $color-red;
+  }
+  &__title {
+    font-weight: 500;
+  }
+  &__input {
+    position: relative;
+    margin-top: 1rem;
+    input {
+      border:none;
+      border-bottom: 1px solid $color-mantu;
+      background-color: adjust-color($color-black, $lightness: 10%);
+      padding: 1rem 1rem 0.5rem;
+      width: 100%;
+      color: $color-white;
+      font-size: 1rem;
+      &:focus {
+        outline: none;
+      }      
+    }
+    label {
+      pointer-events: none;
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      font-size: 1rem;
+      transition:0.2s ease all; 
+      -moz-transition:0.2s ease all; 
+      -webkit-transition:0.2s ease all;
+      color: adjust-color($color-placeholder, $lightness: -15%);
+    }
+    input:focus ~ label, input:valid ~ label 		{
+      top: 0.125rem;
+      font-size: .75rem;
+    }
+  }
+}
+/deep/.jun-modal-add {
+  background-color: adjust-color($color-black, $lightness: 7%);
+  color: $color-white;
+}
