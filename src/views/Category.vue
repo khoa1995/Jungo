@@ -25,11 +25,11 @@
       <div class="add-category-modal">
         <div class="add-category-modal__title">Add Category</div>
         <div class="add-category-modal__input">
-          <input type="text" ref="inputText" required/>
+          <input autofocus type="text" ref="inputText" required />
           <label>Name <span class="required">*</span></label>
         </div>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer modal-footer-custom">
         <b-button class="btn-cancel jun-button--outline-mantu" @click="closeModal">Cancel</b-button>
         <b-button class="btn-done jun-button--default" @click.stop="addRowCat">Done</b-button>
       </div>
@@ -55,11 +55,18 @@ export default {
   methods: {
     addCategory () {
       this.modalAddToggle = true
-      this.$refs.inputText.$el.focus()
+      if (this.modalAddToggle === true) {
+        this.$nextTick(function () {
+          this.$refs.inputText.focus()
+        })
+      }
     },
     closeModal () {
       this.modalAddToggle = false
     }
+  },
+  mounted () {
+    this.$refs.inputText.focus()
   }
 }
 </script>

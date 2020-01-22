@@ -1,0 +1,118 @@
+@import './../../assets/scss/base/variables';
+.jun-list {
+  &-button {
+    border: none;
+    border-radius: 50%;
+    padding: .5rem;
+    &--edit {
+      &:hover {
+        background-color: adjust-color($color-mantu, $alpha: -0.7, $lightness: -15%);
+      }
+    }
+    &--delete {
+      fill: $color-mantu;
+      &:hover {
+        background-color: adjust-color($color-mantu, $alpha: -0.7, $lightness: -15%);
+      }
+      &-disabled {
+        fill: adjust-color($color-placeholder, $lightness: -20%);
+      }
+    }
+  }
+  &-action {
+    position: relative;
+    z-index: 5;
+    cursor: pointer;
+    margin-left: -1rem;
+    @media screen and (max-width: $iPhoneXSMax-landscape) {
+      display: flex;
+      margin-left: auto;
+    }
+  }
+}
+/deep/.jun-modal-delete {
+  background-color: adjust-color($color-black, $lightness: 20%);
+  color: $color-white;
+  .modal-footer {
+    border-top: none;
+    .btn-cancel {
+      border-color: $color-btn-confirm;
+      color: $color-btn-confirm;
+      &:hover {
+        background-color: $color-btn-confirm;
+        color: $color-white;
+      }
+    }
+    .btn-confirm {
+      background-color: $color-btn-confirm
+    }
+  }
+}
+.delete-category-modal {
+  padding: 0 1rem;
+  &__content {
+    margin-top: 1rem;
+    color: adjust-color($color-placeholder, $lightness: -15%);
+  }
+  &__title {
+    font-weight: 500;
+  }
+}
+.edit-category-modal {
+  padding: 0 1rem;
+  .required {
+    color: $color-red;
+  }
+  &__title {
+    font-weight: 500;
+  }
+  &__input {
+    position: relative;
+    margin-top: 1rem;
+    input {
+      border:none;
+      background-color: transparent;
+      padding: 1rem 0.5rem 0.5rem;
+      width: 100%;
+      color: $color-white;
+      font-size: 1rem;
+      &:focus {
+        outline: none;
+      }
+    }
+    label {
+      pointer-events: none;
+      position: absolute;
+      left: 0.5rem;
+      top: 1rem;
+      font-size: 1rem;
+      transition:0.2s ease all;
+      -moz-transition:0.2s ease all;
+      -webkit-transition:0.2s ease all;
+      color: adjust-color($color-placeholder, $lightness: -15%);
+    }
+    input:focus ~ label, input:valid ~ label {
+      top: 0.125rem;
+      font-size: .75rem;
+    }
+    &:before {
+      border-color: $color-mantu;
+      border-style: solid;
+      border-width: thin 0 0 0;
+      bottom: -1px;
+      content: "";
+      left: 0;
+      position: absolute;
+      -webkit-transition: .3s cubic-bezier(.25,.8,.5,1);
+      transition: .3s cubic-bezier(.25,.8,.5,1);
+      width: 100%;
+    }
+  }
+}
+.modal-footer-custom {
+  border: none;
+}
+/deep/.jun-modal-edit {
+  background-color: adjust-color($color-black, $lightness: 20%);
+  color: $color-white;
+}

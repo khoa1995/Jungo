@@ -24,6 +24,6 @@ export default {
 .jun-icon {
   pointer-events: none;
   display: inline-flex;
-  padding: 0 5px;
+  padding: 5px;
 }
 </style>

@@ -8,7 +8,7 @@ module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? appBasePath + '/dist/' : '/',
   outputDir: '..' + distAppPath,
   devServer: {
-    port: 8081,
+    port: 8082,
     historyApiFallback: true,
     noInfo: true,
     overlay: true
@@ -23,7 +23,6 @@ module.exports = {
     }
   },
   configureWebpack: {
-    devtool: 'source-map',
     output: {
       filename: 'js/[name].js',
       chunkFilename: 'js/[name].js'
