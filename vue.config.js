@@ -8,7 +8,7 @@ module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? appBasePath + '/dist/' : '/',
   outputDir: '..' + distAppPath,
   devServer: {
-    port: 8082,
+    port: 8081,
     historyApiFallback: true,
     noInfo: true,
     overlay: true

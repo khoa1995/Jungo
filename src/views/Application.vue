@@ -32,14 +32,28 @@ export default {
 
 <style lang="scss">
 @import './Category.scss';
-.list-application {
-  &__brand {
-    width: 20px;
-    height: 20px;
-    margin: .75rem 0.5rem .75rem 0;
+.jun-application {
+  .list-application {
+    &__brand {
+      width: 20px;
+      height: 20px;
+      margin: .75rem 0.5rem .75rem 0;
+    }
+    .jun-list-layout__row {
+      cursor: pointer;
+      td:first-child {
+        padding-left: 2rem;
+      }
+    }
+    &__icon-arrow {
+      .jun-icon {
+        position: relative;
+        top: 0.45rem;
+      }
+    }
   }
-  .jun-list-layout__row {
-    cursor: pointer;
+  .jun-list-layout__head-app {
+    padding-left: 2rem;
   }
 }
 </style>

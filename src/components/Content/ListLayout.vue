@@ -69,7 +69,7 @@
     <b-table-simple responsive borderless v-show="isInApplication ">
       <b-thead class="jun-list-layout__head">
         <b-tr>
-          <b-th>Application</b-th>
+          <b-th class="jun-list-layout__head-app">Application</b-th>
           <b-th>App type</b-th>
           <b-th>App Category</b-th>
           <b-th>Search keywords</b-th>
@@ -79,7 +79,9 @@
       </b-thead>
       <draggable :list="contentData" tag="b-tbody" class="jun-list-layout__body list-application">
         <b-tr class="jun-list-layout__row" v-for="item in contentData" :key="item.id" :id="item.id">
-          <b-td><img class="list-application__brand" :src="item.logo" alt=""/>{{item.app}}</b-td>
+          <b-td class="list-application__icon-arrow"><img class="list-application__brand" :src="item.logo" alt=""/>{{item.app}}
+            <Icon name="arrow-up" v-b-tooltip.hover.bottom title="URL:aaaa"/>
+          </b-td>
           <b-td>{{item.type}}</b-td>
           <b-td>{{item.name}}</b-td>
           <b-td>
@@ -108,6 +110,7 @@ export default {
   name: 'jun-list-layout',
   components: {
     draggable,
+    Icon: () => import(/* webpackChunkName: "Icon" */ '@/components/Icon/Icon.vue'),
     ListAction: () => import(/* webpackChunkName: "ListAction" */ '@/components/ListAction/ListAction.vue')
   },
   props: {

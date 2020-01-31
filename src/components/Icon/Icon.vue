@@ -3,6 +3,7 @@
     <IconAdd v-if='name === "add"'/>
     <IconEdit v-else-if='name === "edit"'/>
     <IconDelete v-else-if='name === "delete"'/>
+    <IconArrowUp v-else-if='name === "arrow-up"'/>
     <IconDefault v-else/>
   </span>
 </template>
@@ -16,7 +17,8 @@ export default {
     IconDefault: () => import(/* webpackChunkName: "Icon" */ './Icons/IconDefault'),
     IconAdd: () => import(/* webpackChunkName: "Icon" */ './Icons/IconAdd.vue'),
     IconEdit: () => import(/* webpackChunkName: "Icon" */ './Icons/IconEdit.vue'),
-    IconDelete: () => import(/* webpackChunkName: "Icon" */ './Icons/IconDelete.vue')
+    IconDelete: () => import(/* webpackChunkName: "Icon" */ './Icons/IconDelete.vue'),
+    IconArrowUp: () => import(/* webpackChunkName: "Icon" */'./Icons/IconArrowUp.vue')
   }
 }
 </script>
