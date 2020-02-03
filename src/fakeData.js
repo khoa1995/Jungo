@@ -25,6 +25,7 @@ export const application = [
     logo: require('@/assets/images/brand.png'),
     app: 'brandcenter',
     name: 'communication & marketing',
+    url: 'www.weshare.us',
     tags: [
       {
         id: 'marketing',
@@ -43,6 +44,7 @@ export const application = [
     logo: require('@/assets/images/brand.png'),
     app: 'survey',
     name: 'business',
+    url: 'www.weshare.us',
     tags: [
       {
         id: 'Kpi',

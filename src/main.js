@@ -9,6 +9,7 @@ import BootstrapVue from 'bootstrap-vue'
 // Libs style
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'vue-multiselect/dist/vue-multiselect.min.css'
 import './assets/scss/main.scss'
 
 Vue.config.productionTip = false

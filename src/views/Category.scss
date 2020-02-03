@@ -56,6 +56,7 @@
   &__input {
     position: relative;
     margin-top: 1rem;
+    background-color: adjust-color($color-placeholder, $lightness: -60%);
     input {
       border:none;
       // border-bottom: 1px solid adjust-color($color-mantu, $lightness: -20%);
@@ -112,7 +113,7 @@
   }
 }
 .modal-footer-custom {
-  border: none;
+  border: none!important;
 }
 /deep/.jun-modal-add {
   background-color: adjust-color($color-black, $lightness: 20%);

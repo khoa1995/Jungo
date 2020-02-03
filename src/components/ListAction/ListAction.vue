@@ -53,15 +53,64 @@
         <b-button class="btn-done jun-button--default" @click.stop="editRow">Done</b-button>
       </div>
     </b-modal>
+
+    <!--Edit Application-->
+    <b-modal v-model="modalEditApp"
+      centered
+      id="add-app"
+      body-class="jun-modal-app"
+      size="lg"
+      no-close-on-esc
+      no-close-on-backdrop
+      hide-header
+      hide-footer>
+      <div class="add-category-modal">
+        <div class="add-category-modal__title">Edit external app</div>
+        <div class="add-category-modal__input">
+          <input autofocus type="text" ref="inputText" required />
+          <label>Name <span class="required">*</span></label>
+        </div>
+        <div class="add-category-modal__input">
+          <input autofocus type="text" ref="inputText" required />
+          <label>URL <span class="required">*</span></label>
+        </div>
+        <div class="add-category-modal__input">
+          <multiselect
+            v-model="value"
+            id="ajax"
+            label="name"
+            track-by="id"
+            open-direction="bottom"
+            :options="application"
+            :internal-search="false"
+            :clear-on-select="false"
+            :close-on-select="true"
+            :max-height="600"
+            :show-no-results="true"
+            placeholder="App Category">
+          </multiselect>
+        </div>
+        <div class="add-category-modal__input jun-modal-app__search">
+          <input autofocus type="text" ref="inputText" required placeholder="Use spacebar to separate multiple keywords..." />
+          <label>Search keyword</label>
+        </div>
+      </div>
+      <div class="modal-footer modal-footer-custom">
+        <b-button class="btn-cancel jun-button--outline-mantu" @click="closeModal">Cancel</b-button>
+        <b-button class="btn-done jun-button--default" @click.stop="addRowCat">Done</b-button>
+      </div>
+    </b-modal>
   </div>
 </template>
 <script>
+import Multiselect from 'vue-multiselect'
 import { mapActions } from 'vuex'
 import { MAKE_TOAST } from '@/store/action-types'
 
 export default {
   name: 'jun-list-action',
   components: {
+    Multiselect,
     Icon: () => import(/* webpackChunkName: "Icon" */ '@/components/Icon/Icon.vue')
   },
   props: {
@@ -73,7 +122,8 @@ export default {
   data () {
     return {
       modalDeleteToggle: false,
-      modalEditToggle: false
+      modalEditToggle: false,
+      modalEditApp: false
     }
   },
   methods: {
@@ -87,7 +137,11 @@ export default {
       this.modalDeleteToggle = false
     },
     editCategory () {
-      this.modalEditToggle = true
+      if (this.$route.name === 'application') {
+        this.modalEditApp = true
+      } else if (this.$route.name === 'category') {
+        this.modalEditToggle = true
+      }
     },
     closeEditModal () {
       this.modalEditToggle = false
