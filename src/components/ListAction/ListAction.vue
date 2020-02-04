@@ -44,7 +44,7 @@
       <div class="edit-category-modal">
         <div class="edit-category-modal__title">Edit Category</div>
         <div class="edit-category-modal__input">
-          <input type="text" required/>
+          <input type="text" :value="action.name" required/>
           <label>Name <span class="required">*</span></label>
         </div>
       </div>
@@ -66,16 +66,19 @@
       hide-footer>
       <div class="add-category-modal">
         <div class="add-category-modal__title">Edit external app</div>
+        <div class="add-logo">
+          <img class="logo" :src="action.logo"/>
+        </div>
         <div class="add-category-modal__input">
-          <input autofocus type="text" ref="inputText" required />
+          <input autofocus type="text" ref="inputText" :value="action.app" required />
           <label>Name <span class="required">*</span></label>
         </div>
         <div class="add-category-modal__input">
-          <input autofocus type="text" ref="inputText" required />
+          <input autofocus type="text" ref="inputText" :value="action.url" required />
           <label>URL <span class="required">*</span></label>
         </div>
         <div class="add-category-modal__input">
-          <multiselect
+          <!-- <multiselect
             v-model="value"
             id="ajax"
             label="name"
@@ -88,15 +91,22 @@
             :max-height="600"
             :show-no-results="true"
             placeholder="App Category">
-          </multiselect>
+          </multiselect> -->
         </div>
         <div class="add-category-modal__input jun-modal-app__search">
-          <input autofocus type="text" ref="inputText" required placeholder="Use spacebar to separate multiple keywords..." />
+          <!-- <b-form-tag
+            v-for="tagItem in action"
+            :key="tagItem.id"
+            tag-variant="primary"
+            tag-pills
+            separator>
+          </b-form-tags> -->
+          <!-- <input autofocus type="text" ref="inputText" required placeholder="Use spacebar to separate multiple keywords..." /> -->
           <label>Search keyword</label>
         </div>
       </div>
       <div class="modal-footer modal-footer-custom">
-        <b-button class="btn-cancel jun-button--outline-mantu" @click="closeModal">Cancel</b-button>
+        <b-button class="btn-cancel jun-button--outline-mantu" @click="closeEditModal">Cancel</b-button>
         <b-button class="btn-done jun-button--default" @click.stop="addRowCat">Done</b-button>
       </div>
     </b-modal>
@@ -123,7 +133,8 @@ export default {
     return {
       modalDeleteToggle: false,
       modalEditToggle: false,
-      modalEditApp: false
+      modalEditApp: false,
+      
     }
   },
   methods: {
@@ -144,7 +155,16 @@ export default {
       }
     },
     closeEditModal () {
-      this.modalEditToggle = false
+      if (this.$route.name === 'application') {
+        this.modalEditApp = false
+      } else if (this.$route.name === 'category') {
+        this.modalEditToggle = false
+      }
+    }
+  },
+  computed: {
+    valueTag () {
+      return this.action.find(x => x.id === this.tagId).label
     }
   }
 }

@@ -77,10 +77,10 @@
           <b-th>Actions</b-th>
         </b-tr>
       </b-thead>
-      <draggable :list="contentData" tag="b-tbody" class="jun-list-layout__body list-application">
+      <b-tbody :list="contentData" class="jun-list-layout__body list-application">
         <b-tr class="jun-list-layout__row" v-for="item in contentData" :key="item.id" :id="item.id">
           <b-td class="list-application__icon-arrow"><img class="list-application__brand" :src="item.logo" alt=""/>{{item.app}}
-            <Icon name="arrow-up" v-b-tooltip.hover.bottom title="URL:aaaa"/>
+            <a class="btn-url" :href="'https://'+item.url"  v-b-tooltip.hover.bottom :title="item.url" target="_blank"><Icon name="arrow-up"/></a>
           </b-td>
           <b-td>{{item.type}}</b-td>
           <b-td>{{item.name}}</b-td>
@@ -96,7 +96,7 @@
             <ListAction :action="item"/>
           </b-td>
         </b-tr>
-      </draggable>
+      </b-tbody>
     </b-table-simple>
   </div>
 </template>
@@ -213,5 +213,9 @@ export default {
       background-color: adjust-color($color-dark-theme, $lightness: 15%)
     }
   }
+}
+.btn-url {
+  background-color: transparent;
+  border: none;
 }
 </style>
