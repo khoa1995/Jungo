@@ -94,13 +94,17 @@
           </multiselect> -->
         </div>
         <div class="add-category-modal__input jun-modal-app__search">
-          <!-- <b-form-tag
-            v-for="tagItem in action"
-            :key="tagItem.id"
+          <b-form-tags
+            autofocus
+            v-model="value"
             tag-variant="primary"
             tag-pills
             separator>
-          </b-form-tags> -->
+            <template v-slot="{tags, inputAttrs, inputHandlers, tagVariant, addTag, removeTag}">
+              <b-form-input></b-form-input>
+              <b-form-tag @remove="removeTag(tag)" v-for="tag in action.tags" :key="tag.id">{{tag.label}}</b-form-tag>
+              </template>  
+          </b-form-tags>
           <!-- <input autofocus type="text" ref="inputText" required placeholder="Use spacebar to separate multiple keywords..." /> -->
           <label>Search keyword</label>
         </div>
@@ -134,7 +138,7 @@ export default {
       modalDeleteToggle: false,
       modalEditToggle: false,
       modalEditApp: false,
-      
+      value:[]
     }
   },
   methods: {

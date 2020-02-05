@@ -171,7 +171,7 @@ export default {
 .jun-list
 {
   &-layout {
-    margin-top: 3rem;
+    margin-top: 5rem;
     .table-responsive {
       overflow-x: hidden;
     }
@@ -192,6 +192,9 @@ export default {
 /deep/.jun-list-layout {
   &__head {
     color: $color-white;
+    th {
+      padding-bottom: 1.5rem;
+    }
   }
   &__body {
     color: $color-white;

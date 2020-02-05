@@ -37,7 +37,11 @@ export default {
   position: sticky;
   top: 0;
   width: 100%;
+  height: 85px;
   padding: 0;
+  .navbar-dark {
+    height: 100%;
+  }
   &__list {
     padding-left: 1rem;
   }
@@ -54,6 +58,7 @@ export default {
   &__logo {
     text-align: center;
     margin-right: 0;
+    width: 10rem;
   }
   @media screen and(max-width: $iPhoneXSMax-landscape) {
     padding: 0.5rem 0;
