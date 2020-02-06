@@ -24,6 +24,60 @@
       hide-footer>
       <div class="add-category-modal">
         <div class="add-category-modal__title">Add external app</div>
+        <!--Logo App-->
+        <div class="add-category-modal__logo">
+                <vue-avatar
+                :width="400"
+                :height="400"
+                :rotation="rotation"
+                :borderRadius="borderRadius"
+                :scale="scale"
+                ref="vueavatar"
+                @vue-avatar-editor:image-ready="onImageReady"
+                >
+              </vue-avatar>
+              <!-- <br>
+              <label>
+                Zoom : {{scale}}x
+                <br>
+                <input
+                  type="range"
+                  min=1
+                  max=3
+                  step=0.02
+                  v-model='scale'
+                />
+              </label>
+              <br>
+              <label>
+                Rotation : {{rotation}}°
+                <br>
+                <input
+                  type="range"
+                  min=0
+                  max=360
+                  step=1
+                  v-model='rotation'
+                />
+              </label>
+              <br>
+              <label>
+                Radius : {{borderRadius}}px
+                <br>
+                <input
+                  type="range"
+                  min=0
+                  max=200
+                  step=1
+                  v-model='borderRadius'
+                />
+              </label>
+              <br>
+              <button v-on:click="saveClicked">Get image</button>
+              <br>
+            <img ref="image"> -->
+        </div>
+        <!--content app-->
         <div class="add-category-modal__input">
           <input autofocus type="text" ref="inputText" required />
           <label>Name <span class="required">*</span></label>
@@ -49,8 +103,16 @@
           </multiselect>
         </div>
         <div class="add-category-modal__input jun-modal-app__search">
-          <input autofocus type="text" ref="inputText" required placeholder="Use spacebar to separate multiple keywords..." />
+          <!-- <input autofocus type="text" ref="inputText" required placeholder="Use spacebar to separate multiple keywords..." /> -->
           <label>Search keyword</label>
+          <b-form-tags
+            placeholder="Use spacebar to separate multiple keywords..."
+            autofocus
+            v-model="keywords"
+            separator=" "
+            class="jun-modal-app__search-keyword"
+            tag-variant="primary"
+          ></b-form-tags>
         </div>
       </div>
       <div class="modal-footer modal-footer-custom">
@@ -63,10 +125,13 @@
 <script>
 import Multiselect from 'vue-multiselect'
 import { application } from '@/fakeData.js'
+import { VueAvatar } from 'vue-avatar-editor-improved'
+
 export default {
   name: 'application',
   components: {
     Multiselect,
+    VueAvatar,
     Icon: () => import(/* webpackChunkName: "Icon" */ '@/components/Icon/Icon.vue'),
     ListLayout: () => import(/* webpackChunkName: "ListLayout" */ '@/components/Content/ListLayout.vue')
   },
@@ -74,10 +139,21 @@ export default {
     return {
       value: '',
       application,
-      modalAddAppToggle: false
+      modalAddAppToggle: false,
+      keywords: [],
+      rotation: 0,
+      scale: 1
     }
   },
   methods: {
+    saveClicked () {
+      var img = this.$refs.vueavatar.getImageScaled()
+      this.$refs.image.src = img.toDataURL()
+    },
+    onImageReady () {
+      this.scale = 1
+      this.rotation = 0
+    },
     addApplication () {
       this.modalAddAppToggle = true
     },
@@ -125,6 +201,20 @@ export default {
     input {
       &::placeholder {
         font-size: 1rem;
+      }
+    }
+    &-keyword {
+      &.b-form-tags, &.b-form-tags.focus {
+        background-color: adjust-color($color-placeholder, $lightness: -60%);
+        box-shadow: none;
+        border: none;
+        li {
+          margin-top: 1rem!important;
+          &.b-form-tag {
+            background-color: $color-tags;
+            border-radius: 5rem;
+          }
+        }
       }
     }
   }

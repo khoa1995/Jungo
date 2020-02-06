@@ -78,7 +78,7 @@
           <label>URL <span class="required">*</span></label>
         </div>
         <div class="add-category-modal__input">
-          <!-- <multiselect
+          <multiselect
             v-model="value"
             id="ajax"
             label="name"
@@ -91,22 +91,10 @@
             :max-height="600"
             :show-no-results="true"
             placeholder="App Category">
-          </multiselect> -->
+          </multiselect>
         </div>
         <div class="add-category-modal__input jun-modal-app__search">
-          <b-form-tags
-            autofocus
-            v-model="value"
-            tag-variant="primary"
-            tag-pills
-            separator>
-            <template v-slot="{tags, inputAttrs, inputHandlers, tagVariant, addTag, removeTag}">
-              <b-form-input></b-form-input>
-              <b-form-tag @remove="removeTag(tag)" v-for="tag in action.tags" :key="tag.id">{{tag.label}}</b-form-tag>
-              </template>  
-          </b-form-tags>
-          <!-- <input autofocus type="text" ref="inputText" required placeholder="Use spacebar to separate multiple keywords..." /> -->
-          <label>Search keyword</label>
+
         </div>
       </div>
       <div class="modal-footer modal-footer-custom">
@@ -117,6 +105,7 @@
   </div>
 </template>
 <script>
+import { application } from '@/fakeData.js'
 import Multiselect from 'vue-multiselect'
 import { mapActions } from 'vuex'
 import { MAKE_TOAST } from '@/store/action-types'
@@ -135,10 +124,11 @@ export default {
   },
   data () {
     return {
+      application,
       modalDeleteToggle: false,
       modalEditToggle: false,
       modalEditApp: false,
-      value:[]
+      value: [{id:this.action.id, name: this.action.name}]
     }
   },
   methods: {

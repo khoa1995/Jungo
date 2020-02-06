@@ -25,7 +25,7 @@
       <div class="add-category-modal">
         <div class="add-category-modal__title">Add Category</div>
         <div class="add-category-modal__input">
-          <input autofocus type="text" ref="inputText" required />
+          <input class="form-control" autofocus type="text" ref="inputText" />
           <label>Name <span class="required">*</span></label>
         </div>
       </div>
@@ -55,18 +55,10 @@ export default {
   methods: {
     addCategory () {
       this.modalAddToggle = true
-      if (this.modalAddToggle === true) {
-        this.$nextTick(function () {
-          this.$refs.inputText.focus()
-        })
-      }
     },
     closeModal () {
       this.modalAddToggle = false
     }
-  },
-  mounted () {
-    this.$refs.inputText.focus()
   }
 }
 </script>
