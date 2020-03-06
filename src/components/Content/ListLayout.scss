@@ -1,0 +1,66 @@
+@import './../../assets/scss/base/variables';
+.jun-list
+{
+  &-layout {
+    margin-top: 5rem;
+    .table-responsive {
+      overflow-x: hidden;
+    }
+    &__draggable {
+      width: 4rem;
+      text-align: center;
+    }
+    &__keywords {
+      border-radius: 5rem;
+      background-color: $color-tags;
+      padding: .5rem;
+      margin: .5rem .5rem 0 0;
+      font-weight: 500;
+      font-size: 14px;
+    }
+  }
+}
+/deep/.jun-list-layout {
+  &__head {
+    color: $color-white;
+    th {
+      padding-bottom: 1.5rem;
+    }
+  }
+  &__body {
+    color: $color-white;
+    background-color: adjust-color($color-dark-theme, $lightness: 10%)
+  }
+  &__row {
+    cursor: move;
+    border: 0.125rem solid;
+    border-color: $color-border transparent $color-border transparent;
+    td {
+      vertical-align: middle;
+    }
+    &:first-child {
+      border-top: none;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+    &:hover{
+      background-color: adjust-color($color-dark-theme, $lightness: 15%)
+    }
+  }
+  &__name {
+    max-width: 50rem;
+    word-break: break-word;;
+  }
+}
+.btn-url {
+  background-color: transparent;
+  border: none;
+}
+.noResult {
+  padding: 1rem;
+  text-align: center;
+  color: $color-white;
+  border-radius: .25rem;
+  background-color: adjust-color($color-dark-theme, $lightness: 10%) ;
+}

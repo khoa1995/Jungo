@@ -43,7 +43,7 @@
   &--default {
     color: $color-white;
     background-color: $color-mantu;
-    &:hover {
+    &:hover, &:focus {
       background-color: adjust-color($color-mantu, $lightness: -5%);
     }
   }
@@ -60,7 +60,7 @@
     font-weight: 500;
     padding: 0.75rem 1.25rem;
     background-color: adjust-color($color-mantu, $alpha: -0.875);
-    &:hover {
+    &:hover, &:focus {
       color: $color-white;
       background-color: $color-mantu;
     }

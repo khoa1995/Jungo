@@ -4,7 +4,3 @@ export const toastConfig = {
   solid: true,
   autoHideDelay: 5000 // ms
 }
-
-export const env = {
-  API_SERVER: 'http://jsonplaceholder.typicode.com'
-}

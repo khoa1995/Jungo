@@ -5,6 +5,7 @@ import store from './store'
 
 // Libs
 import BootstrapVue from 'bootstrap-vue'
+import Vuelidate from 'vuelidate'
 
 // Libs style
 import 'bootstrap/dist/css/bootstrap.css'
@@ -14,6 +15,7 @@ import './assets/scss/main.scss'
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
+Vue.use(Vuelidate)
 
 new Vue({
   router,

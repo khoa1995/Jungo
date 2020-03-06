@@ -1,170 +1,52 @@
 <template>
-  <div class="jun-application">
-    <div class="jun-category-header">
-      <div class="jun-category-header__title">My Applications</div>
-      <div class="jun-category-header__actions">
-        <div class="jun-category-header__search">
-          <input placeholder="Search by name..." />
-        </div>
-        <div class="jun-category-header__add">
-          <button class="jun-button" @click="addApplication"><Icon name="add"/>Add external app</button>
-        </div>
-      </div>
-    </div>
-    <ListLayout :contentData="application"/>
-    <!--Add external app-->
-    <b-modal v-model="modalAddAppToggle"
-      centered
-      id="add-app"
-      body-class="jun-modal-app"
-      size="lg"
-      no-close-on-esc
-      no-close-on-backdrop
-      hide-header
-      hide-footer>
-      <div class="add-category-modal">
-        <div class="add-category-modal__title">Add external app</div>
-        <!--Logo App-->
-        <div class="add-category-modal__logo">
-                <vue-avatar
-                :width="400"
-                :height="400"
-                :rotation="rotation"
-                :borderRadius="borderRadius"
-                :scale="scale"
-                ref="vueavatar"
-                @vue-avatar-editor:image-ready="onImageReady"
-                >
-              </vue-avatar>
-              <!-- <br>
-              <label>
-                Zoom : {{scale}}x
-                <br>
-                <input
-                  type="range"
-                  min=1
-                  max=3
-                  step=0.02
-                  v-model='scale'
-                />
-              </label>
-              <br>
-              <label>
-                Rotation : {{rotation}}°
-                <br>
-                <input
-                  type="range"
-                  min=0
-                  max=360
-                  step=1
-                  v-model='rotation'
-                />
-              </label>
-              <br>
-              <label>
-                Radius : {{borderRadius}}px
-                <br>
-                <input
-                  type="range"
-                  min=0
-                  max=200
-                  step=1
-                  v-model='borderRadius'
-                />
-              </label>
-              <br>
-              <button v-on:click="saveClicked">Get image</button>
-              <br>
-            <img ref="image"> -->
-        </div>
-        <!--content app-->
-        <div class="add-category-modal__input">
-          <input autofocus type="text" ref="inputText" required />
-          <label>Name <span class="required">*</span></label>
-        </div>
-        <div class="add-category-modal__input">
-          <input autofocus type="text" ref="inputText" required />
-          <label>URL <span class="required">*</span></label>
-        </div>
-        <div class="add-category-modal__input">
-          <multiselect
-            v-model="value"
-            id="ajax"
-            label="name"
-            track-by="id"
-            open-direction="bottom"
-            :options="application"
-            :internal-search="false"
-            :clear-on-select="false"
-            :close-on-select="true"
-            :max-height="600"
-            :show-no-results="true"
-            placeholder="App Category">
-          </multiselect>
-        </div>
-        <div class="add-category-modal__input jun-modal-app__search">
-          <!-- <input autofocus type="text" ref="inputText" required placeholder="Use spacebar to separate multiple keywords..." /> -->
-          <label>Search keyword</label>
-          <b-form-tags
-            placeholder="Use spacebar to separate multiple keywords..."
-            autofocus
-            v-model="keywords"
-            separator=" "
-            class="jun-modal-app__search-keyword"
-            tag-variant="primary"
-          ></b-form-tags>
-        </div>
-      </div>
-      <div class="modal-footer modal-footer-custom">
-        <b-button class="btn-cancel jun-button--outline-mantu" @click="closeModal">Cancel</b-button>
-        <b-button class="btn-done jun-button--default" @click.stop="addRowCat">Done</b-button>
-      </div>
-    </b-modal>
+  <div class="jun-application" >
+    <b-table-simple responsive borderless v-show="isInApplication ">
+      <b-thead class="jun-list-layout__head">
+        <b-tr>
+          <b-th class="jun-list-layout__head-app">Application</b-th>
+          <b-th>App type</b-th>
+          <b-th>App Category</b-th>
+          <b-th>Search keywords</b-th>
+          <b-th>Active</b-th>
+          <b-th>Actions</b-th>
+        </b-tr>
+      </b-thead>
+      <draggable :list="contentData" tag="b-tbody" class="jun-list-layout__body list-application">
+        <b-tr class="jun-list-layout__row" v-for="item in contentData" :key="item.id" :id="item.id">
+          <b-td class="list-application__icon-arrow"><img class="list-application__brand" :src="item.logo" alt=""/>{{item.app}}
+            <Icon name="arrow-up" v-b-tooltip.hover.bottom title="URL:aaaa"/>
+          </b-td>
+          <b-td>{{item.type}}</b-td>
+          <b-td>{{item.name}}</b-td>
+          <b-td>
+            <span class="jun-list-layout__keywords" v-for="tag in item.tags" :key="tag.id">
+              {{tag.label}}
+            </span>
+          </b-td>
+          <b-td class="jun-list-layout__active jun-switch">
+            <b-form-checkbox switch size="lg" v-model="item.isActive"></b-form-checkbox>
+          </b-td>
+          <b-td>
+            <ListAction :action="item"/>
+          </b-td>
+        </b-tr>
+      </draggable>
+    </b-table-simple>
   </div>
 </template>
-<script>
-import Multiselect from 'vue-multiselect'
-import { application } from '@/fakeData.js'
-import { VueAvatar } from 'vue-avatar-editor-improved'
 
+<script>
 export default {
   name: 'application',
-  components: {
-    Multiselect,
-    VueAvatar,
-    Icon: () => import(/* webpackChunkName: "Icon" */ '@/components/Icon/Icon.vue'),
-    ListLayout: () => import(/* webpackChunkName: "ListLayout" */ '@/components/Content/ListLayout.vue')
-  },
-  data () {
-    return {
-      value: '',
-      application,
-      modalAddAppToggle: false,
-      keywords: [],
-      rotation: 0,
-      scale: 1
-    }
-  },
-  methods: {
-    saveClicked () {
-      var img = this.$refs.vueavatar.getImageScaled()
-      this.$refs.image.src = img.toDataURL()
-    },
-    onImageReady () {
-      this.scale = 1
-      this.rotation = 0
-    },
-    addApplication () {
-      this.modalAddAppToggle = true
-    },
-    closeModal () {
-      this.modalAddAppToggle = false
+  computed: {
+    isInApplication () {
+      return this.$route.name === 'application'
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import './Category.scss';
 .jun-application {
   .list-application {

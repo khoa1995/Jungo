@@ -1,11 +1,10 @@
 const appBasePath = '/Jungo'
-const distAppPath = '/wwwroot/dist'
-// const path = require('path')
+const distAppPath = '/wwwroot'
 
 module.exports = {
   lintOnSave: true,
   filenameHashing: false,
-  publicPath: process.env.NODE_ENV === 'production' ? appBasePath + '/dist/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? appBasePath + '/' : '/',
   outputDir: '..' + distAppPath,
   devServer: {
     port: 8081,

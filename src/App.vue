@@ -2,7 +2,6 @@
   <div id="app" class="app-container">
    <Navbar></Navbar>
    <main class="jun-main">
-    <!-- <Category/> -->
     <router-view />
    </main>
   <Toast />
@@ -14,7 +13,6 @@ export default {
   name: 'app',
   components: {
     Navbar: () => import(/* webpackChunkName: "Navbar" */ '@/components/Navbar/Navbar.vue'),
-    // Category: () => import(/* webpackChunkName: "Category" */ '@/views/Category.vue'),
     Toast: () => import(/* webpackChunkName: "Toast" */ '@/components/Toast/Toast.vue')
   }
 }

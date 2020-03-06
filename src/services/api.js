@@ -27,7 +27,8 @@ let _combineHeader = headers => {
 
 export default {
   install () {
-    axios.defaults.baseURL = env.API_SERVER
+    axios.defaults.baseURL = `${env.BASE_URL}`
+    axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
     axios.defaults.withCredentials = true
     for (let name in config.headers) {
       axios.defaults.headers.common[name] = config.headers[name]

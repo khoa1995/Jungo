@@ -1,0 +1,93 @@
+@import './../../assets/scss/base/variables';
+.jun-list {
+  &-button {
+    border: none;
+    border-radius: 50%;
+    padding: .5rem .75rem;
+    &--edit {
+      &:hover {
+        background-color: adjust-color($color-mantu, $alpha: -0.7, $lightness: -15%);
+      }
+    }
+    &--delete {
+      fill: $color-mantu;
+      margin-left: .75rem;
+      &:hover {
+        background-color: adjust-color($color-mantu, $alpha: -0.7, $lightness: -15%);
+      }
+      &-disabled {
+        fill: adjust-color($color-placeholder, $lightness: -20%);
+        margin-left: .75rem;
+      }
+    }
+  }
+  &-action {
+    position: relative;
+    cursor: pointer;
+    margin-left: -1rem;
+    @media screen and (max-width: $iPhoneXSMax-landscape) {
+      display: flex;
+      margin-left: auto;
+    }
+  }
+}
+.edit-category-modal {
+  padding: 0 1rem;
+  .required {
+    color: $color-red;
+  }
+  &__title {
+    font-weight: 500;
+  }
+  &__input {
+    position: relative;
+    margin-top: 2rem;
+    input {
+      border:none;
+      background-color: transparent;
+      padding: 1rem 0rem 0.5rem 0;
+      width: 100%;
+      color: $color-white;
+      font-size: 1rem;
+      &:focus {
+        outline: none;
+      }
+    }
+    label {
+      pointer-events: none;
+      position: absolute;
+      left: 0rem;
+      top: .5rem;
+      font-size: 1rem;
+      transition:0.2s ease all;
+      -moz-transition:0.2s ease all;
+      -webkit-transition:0.2s ease all;
+      color: adjust-color($color-placeholder, $lightness: -15%);
+    }
+    input:focus ~ label, input:valid ~ label {
+      top: 0.125rem;
+      font-size: .75rem;
+    }
+    &:before {
+      border-color: $color-mantu;
+      border-style: solid;
+      border-width: thin 0 0 0;
+      bottom: -1px;
+      content: "";
+      left: 0;
+      position: absolute;
+      -webkit-transition: .3s cubic-bezier(.25,.8,.5,1);
+      transition: .3s cubic-bezier(.25,.8,.5,1);
+      width: 100%;
+    }
+  }
+}
+.modal-footer-custom {
+  border: none;
+  padding-top: 2rem;
+}
+/deep/.jun-modal-edit {
+  background-color: adjust-color($color-black, $lightness: 20%);
+  color: $color-white;
+  padding: 2rem;
+}

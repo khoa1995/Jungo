@@ -12,7 +12,8 @@ export default {
     ...mapState({
       counter: state => state.toast.counter,
       title: state => state.toast.title,
-      variant: state => state.toast.variant
+      variant: state => state.toast.variant,
+      content: state => state.toast.content
     })
   },
   watch: {
@@ -22,11 +23,27 @@ export default {
   },
   methods: {
     makeToast () {
-      this.$bvToast.toast(' ', {
+      let content = this.content ? this.content : ' '
+      this.$bvToast.toast(content, {
         ...toastConfig,
-        title: this.title,
+        title: this.getTitle(),
         variant: this.variant
       })
+    },
+    getTitle () {
+      switch (this.variant) {
+        case 'success':
+          return 'Success'
+        case 'danger':
+          return 'Error'
+        case 'info':
+        case 'default':
+        case 'primary':
+        case 'secondary':
+          return 'Information'
+        case 'warning':
+          return 'Warning'
+      }
     }
   }
 }
